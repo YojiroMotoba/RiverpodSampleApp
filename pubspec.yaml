@@ -10,8 +10,11 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_hooks: ^0.15.0
   hooks_riverpod: ^0.12.3
+  dio: ^3.0.10
+  freezed: ^0.12.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
 flutter:
   uses-material-design: true

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:riverpod_sample_app/provider/counter_provider.dart';
+import 'package:riverpod_sample_app/repository/youtube_repository.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -47,6 +48,7 @@ class MyHomePage extends HookWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.read(counterProvider).state++;
+          YoutubeRepository().fetchMovieList();
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

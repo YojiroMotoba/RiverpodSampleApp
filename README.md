@@ -15,3 +15,17 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # RiverpodSampleApp
+
+## build_runner
+Run this command in terminal
+```shell script
+flutter packages pub run build_runner build
+```
+Run this command in terminal to watch auto change
+```shell script
+flutter packages pub run build_runner watch
+```
+Run this command in terminal to watch auto change and delete previously generated files
+```shell script
+flutter packages pub run build_runner watch --delete-conflicting-outputs
+```
