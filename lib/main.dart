@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:riverpod_sample_app/provider/counter_provider.dart';
+import 'package:riverpod_sample_app/repository/response/youtube_search_response.dart';
 import 'package:riverpod_sample_app/repository/youtube_repository.dart';
+
+import 'network/api_result.dart';
+import 'network/network_exceptions.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -46,9 +52,18 @@ class MyHomePage extends HookWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           context.read(counterProvider).state++;
-          YoutubeRepository().fetchMovieList();
+          ApiResult<YoutubeSearchResponse> apiResult =
+              await YoutubeRepository().fetchMovieList();
+          apiResult.when(
+            success: (YoutubeSearchResponse data) {
+              log(data.kind);
+            },
+            failure: (NetworkExceptions error) {
+              log(error.toString());
+            },
+          );
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
