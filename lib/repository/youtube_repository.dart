@@ -23,8 +23,10 @@ class YoutubeRepository {
           "key": _apiKey,
         },
       );
-      log(response);
-      return ApiResult.success(data: YoutubeSearchResponse());
+      YoutubeSearchResponse youtubeSearchResponse =
+          YoutubeSearchResponse.fromJson(response);
+      log('fromJson[${youtubeSearchResponse.kind}]');
+      return ApiResult.success(data: youtubeSearchResponse);
     } catch (e) {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
